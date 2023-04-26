@@ -43,7 +43,9 @@ namespace odc {
         display_->DrawGraphBounds();
         display_->Show();
 
-        uint16_t tick = 1500;
+        // TODO: delay between blocks while testing messaging
+        //  decrease to evaluate message decode speed of workbench app
+        uint16_t tick = 50;
 
 // ------------------------------------------------------------------------------
         Command::Echo echoOn = Command::Echo(true);
