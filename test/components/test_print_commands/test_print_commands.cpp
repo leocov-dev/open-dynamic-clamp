@@ -1,9 +1,8 @@
 #include <unity.h>
-
-#include <stringutils.h>
+#include <utils/stringutils.h>
 #include <commands/Base.h>
-#include <commands/MessageCommand.h>
-#include <commands/DataPointCommand.h>
+#include <commands/Message.h>
+#include <commands/DataPoint.h>
 
 void print_cmd(std::string heading, odc::Command::Base *cmd) {
     uint32_t encodingSize = cmd->GetEncodingSize();
@@ -14,10 +13,10 @@ void print_cmd(std::string heading, odc::Command::Base *cmd) {
 
     UnityPrint(heading.c_str());
     UNITY_PRINT_EOL();
-    auto as_array = bytes_to_hex_array(buff, encodingSize);
+    auto as_array = odc::utils::bytes_to_hex_array(buff, encodingSize);
     UnityPrint(as_array.c_str());
     UNITY_PRINT_EOL();
-    auto as_string = bytes_to_hex_string(buff, encodingSize);
+    auto as_string = odc::utils::bytes_to_hex_string(buff, encodingSize);
     UnityPrint(as_string.c_str());
     UNITY_PRINT_EOL();
     UNITY_PRINT_EOL();

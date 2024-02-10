@@ -10,15 +10,17 @@ Firmware code and Hardware schematics
 
 ## Quick Start
 
-Install PlatformIO
+First install [PlatformIO](https://platformio.org/)
 
 ```shell
+# ensure code builds
 $ make build
 ```
 
 ## Upload Firmware
 
-Compatible hardware is required. 
+Connect your device. Compatible hardware is required.
+
 PlatformIO will attempt to auto-discover the correct com port.
 
 ```shell
@@ -26,6 +28,8 @@ $ make upload
 ```
 
 ## Tests
+
+Run unit tests.
 
 ```shell
 $ make test

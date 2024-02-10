@@ -7,13 +7,15 @@
 #ifndef ODC_FIRMWARE_SPI_H
 #define ODC_FIRMWARE_SPI_H
 
-namespace odc::Display {
-    struct SpiPins {
-        // HARDWARE SPI CLK, MOSI
-        const int8_t DC;
-        const int8_t CS;
-        const int8_t RESET;
-    };
+namespace odc {
+    namespace Display {
+        struct SpiPins {
+            // HARDWARE SPI CLK, MOSI
+            const int8_t DC;
+            const int8_t CS;
+            const int8_t RESET;
+        };
+    }
 }
 
 #endif //ODC_FIRMWARE_SPI_H

@@ -2,11 +2,11 @@
 // Created by Leonardo Covarrubias on 2/24/23.
 //
 
-#include <cstdint>
-#include "Base.h"
-
 #ifndef ODC_FIRMWARE_ECHOCOMMAND_H
 #define ODC_FIRMWARE_ECHOCOMMAND_H
+
+#include <cstdint>
+#include "Base.h"
 
 namespace odc::Command {
     class Echo : public Base {
@@ -15,7 +15,7 @@ namespace odc::Command {
                 Base(Type::ECHO),
                 state_(state) {};
 
-        void Encode(uint8_t *buff, uint8_t offset) override;
+        void Encode(uint8_t *buffer, uint8_t offset) override;
 
         uint32_t GetEncodingSize() override;
 

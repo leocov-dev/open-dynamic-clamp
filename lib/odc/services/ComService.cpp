@@ -3,6 +3,7 @@
 //
 
 #include "ComService.h"
+#include "commands/Echo.h"
 
 
 void odc::Services::ComService::SendCommand(odc::Command::Base &cmd) {
@@ -14,8 +15,3 @@ void odc::Services::ComService::SendCommand(odc::Command::Base &cmd) {
 
     send_(buff, buffSize);
 }
-
-void odc::Services::ComService::HandleCommand(const uint8_t *buffer, size_t size) {
-
-}
-

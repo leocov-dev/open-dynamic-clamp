@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name "ATSAMD51G19A-MUT")(type "KiCad")(uri "/Users/leo/src/kicad-library/ul_ATSAMD51G19A-MUT/KiCADv6/2023-09-10_19-57-46.kicad_sym")(options "")(descr ""))
+  (lib (name "ADP5070ACPZ")(type "KiCad")(uri "/Users/leo/src/kicad-library/ul_ADP5070ACPZ/KiCADv6/2023-09-11_01-45-33.kicad_sym")(options "")(descr ""))
+)

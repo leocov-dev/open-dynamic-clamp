@@ -1,7 +1,7 @@
 #include <unity.h>
 
-#include <stringutils.h>
-#include <commands/MessageCommand.h>
+#include <utils/stringutils.h>
+#include <commands/Message.h>
 
 void test_message_command() {
     auto cmd = odc::Command::Message(
@@ -14,7 +14,7 @@ void test_message_command() {
     unsigned char buff[encodingSize];
     cmd.Encode(buff, 0);
 
-    auto formatted = bytes_to_hex_string(buff, encodingSize);
+    auto formatted = odc::utils::bytes_to_hex_string(buff, encodingSize);
 
     UnityPrint(formatted.c_str());
     UNITY_PRINT_EOL();

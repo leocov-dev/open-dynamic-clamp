@@ -24,7 +24,7 @@ namespace odc::Command {
                 inject_(inject),
                 cycle_(cycle) {}
 
-        void Encode(unsigned char *buff, uint8_t offset) override;
+        void Encode(unsigned char *buffer, uint8_t offset) override;
 
         uint32_t GetEncodingSize() override;
 

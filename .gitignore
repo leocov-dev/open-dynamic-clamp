@@ -3,3 +3,11 @@
 
 CMakeListsPrivate.txt
 cmake-build-*/
+
+projectFilesBackup/
+
+.DS_Store
+
+*.psd
+
+*-bak

@@ -27,7 +27,8 @@ namespace odc::Command {
                 len_(strlen(msg)),
                 encodingSize(SizeByte + SizeInt + len_) {};
 
-        void Encode(uint8_t *buff, uint8_t offset) override;
+        void Encode(uint8_t *buffer, uint8_t offset) override;
+
         uint32_t GetEncodingSize() override;
 
     private:
