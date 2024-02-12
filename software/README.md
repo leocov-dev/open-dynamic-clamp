@@ -1,11 +1,9 @@
 # Open Dynamic Clamp Workbench
 
-[![Continuous Integration](https://github.com/leocov-dev/open-dynamic-clamp-workbench/actions/workflows/ci.yaml/badge.svg)](https://github.com/leocov-dev/open-dynamic-clamp-workbench/actions/workflows/ci.yaml)
-
-- This fork is a PySide6 [rewrite](https://github.com/christianrickert/pyClamp) of the original with UI and communication protocol changes.  
+- This is a PySide6 rewrite of the [original](https://github.com/christianrickert/pyClamp) with UI and communication protocol changes.  
 
 Cross-platform desktop companion application
-for [instrument hardware](https://github.com/leocov-dev/open-dynamic-clamp-firmware).
+for [instrument hardware](../firmware/README.md).
 
 ![GUI example image](.github/img/workbench_gui.png)
 
@@ -16,12 +14,6 @@ for [instrument hardware](https://github.com/leocov-dev/open-dynamic-clamp-firmw
 ```
 
 The app can only be run in [development mode](#development) at this time.
-
-## References
-
-- Niraj Desai - [dynamic_clamp](https://github.com/nsdesai/dynamic_clamp)
-- Christian Rickert - [dyClamp](https://github.com/christianrickert/dyClamp/)
-- Christian Rickert - [pyClamp](https://github.com/christianrickert/pyClamp)
 
 ## Development
 
