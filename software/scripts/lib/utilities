@@ -1,0 +1,126 @@
+#!/usr/bin/env bash
+
+__utils_repo_root=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)
+
+function setup_venv() {
+  check_python_version
+
+  local _venv_target="$__utils_repo_root/.venv"
+  echo "Setting up new venv at $_venv_target ..."
+  echo RUNNING: python -m venv "$_venv_target"
+  python -m venv "$_venv_target"
+}
+
+function activate_venv() {
+  local _local_venv
+  _local_venv=$(get_repo_venv)
+
+  if [[ -n $VIRTUAL_ENV ]]; then
+    if [[ -n $_local_venv && $_local_venv != "$VIRTUAL_ENV" ]]; then
+        echo "Error: active venv \"$VIRTUAL_ENV\" not expected venv \"$_local_venv\". Deactivate existing venv first."
+        return 1
+    fi
+
+    # venv already set up
+    return 0
+  fi
+
+  if [[ -z $_local_venv ]]; then
+    # local venv did not exist, making one
+    setup_venv
+    _local_venv=$(get_repo_venv)
+  fi
+
+  echo "Activating venv..."
+  echo
+
+  # shellcheck disable=SC1090
+  source "$_local_venv/bin/activate"
+}
+
+function check_python_version() {
+  local _py_version_file="$__utils_repo_root/.python-version"
+  local _expected_py_version
+  _expected_py_version=$(trim_to_major_minor "$(cat "$_py_version_file")")
+
+  if [[ -z $_expected_py_version ]]; then
+    echo "Error: failed to parse python version from file \"$_py_version_file\"" >&2
+    return 1
+  fi
+
+  local _current_python_version
+  _current_python_version=$(trim_to_major_minor "$(python --version)")
+
+  if [[ "$_current_python_version" != "$_expected_py_version" ]]; then
+    echo "Error: expected python version \"$_expected_py_version\" got \"$_current_python_version\". Use version defined in \"$_py_version_file\"."
+    return 1
+  fi
+}
+
+function get_repo_venv() {
+  local _venv
+  if [[ -n $ODC_VENV_OVERRIDE ]]; then
+    _venv="${ODC_VENV_OVERRIDE}"
+  else
+    _venv="${__utils_repo_root}/.venv"
+  fi
+
+  if [[ -d $_venv ]]; then
+    echo "$_venv"
+  else
+    # not found
+    echo ""
+  fi
+}
+
+#######################################
+# skip command if inside continuous integration workflow
+# GitHub always exports CI=true in workflows
+#
+# Globals:
+#   CI - if this env var is set then skip the function call
+# Arguments:
+#  None
+# Examples:
+#     # basic usage, do not wrap call in $(...)
+#     skip_in_ci echo "Not in CI"
+#     skip_in_ci my_function
+#
+#     # if capturing output, will be empty string if CI=true,
+#     # in this example $_var will be ""
+#     _var=skip_in_ci function_that_echos
+#######################################
+function skip_in_ci() {
+  if [[ -n $CI ]]; then
+    echo "Skipping: $*"
+    echo
+  else
+    "$@"
+  fi
+}
+
+#######################################
+# trim input string to only `x.y` of `x.y.z` version string
+#
+# Arguments:
+#   1 - input version number string
+#######################################
+function trim_to_major_minor() {
+  echo "$1" | grep -o "[^.]*[0-9].[0-9]\{1,2\}" | head -1 | sed 's/^[a-zA-Z ]*//'
+}
+
+#######################################
+# Install python dependencies
+# Globals:
+#   __utils_repo_root = root of THIS repository
+# Arguments:
+#  None
+#######################################
+function install_python_deps() {
+  echo "Pip Install..."
+  python -m pip install -U pip setuptools wheel
+  pip install -U \
+    -r "$__utils_repo_root/requirements.txt" \
+    -r "$__utils_repo_root/requirements-dev.txt"
+  echo
+}

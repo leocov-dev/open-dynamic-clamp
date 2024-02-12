@@ -1,0 +1,12 @@
+.idea/
+
+.pio/
+
+CMakeListsPrivate.txt
+cmake-build-*/
+
+projectFilesBackup/
+
+.DS_Store
+
+*-bak

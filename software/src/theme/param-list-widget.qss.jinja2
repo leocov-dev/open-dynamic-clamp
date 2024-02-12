@@ -1,0 +1,72 @@
+#ParamListWidget {
+    color: {{ theme.text_color }};
+    background: transparent;
+    border-radius: 0;
+}
+#ParamListWidget_TITLE{
+    border: 1px solid {{ theme.widget_border_color }};
+    padding: 10px 15px 10px 15px;
+    background: {{ theme.widget_accent_neutral_color }};
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: {{ theme.widget_corner_radius }};
+}
+#ParamListWidget_HEADING{
+    padding: 2px 2px 2px 8px;
+    border-left: 1px solid {{ theme.widget_border_color }};
+    border-top: 1px solid {{ theme.widget_border_color }};
+    border-bottom: 1px solid {{ theme.widget_border_color }};
+    background: {{ theme.widget_accent_neutral_color }};
+    border-radius: 0;
+    border-top-left-radius: {{ theme.widget_corner_radius }};
+    border-bottom-left-radius: {{ theme.widget_corner_radius }};
+}
+#ParamListWidget QAbstractSpinBox {
+    padding: 2px 2px 2px 8px;
+    border: 1px solid {{ theme.widget_border_color }};
+    background: {{ theme.background_color }};
+    border-radius: 0;
+    border-top-right-radius: {{ theme.widget_corner_radius }};
+    border-bottom-right-radius: {{ theme.widget_corner_radius }};
+}
+#ParamListWidget QAbstractSpinBox::up-button {
+    width: 16px;
+    border-bottom: 1px solid {{ theme.widget_border_color }};
+    border-left: 1px solid {{ theme.widget_border_color }};
+    background: {{ theme.widget_accent_neutral_color }};
+    border-top-right-radius: {{ theme.widget_corner_radius }};
+}
+#ParamListWidget QAbstractSpinBox::up-button:hover {
+    background: {{ theme.widget_accent_neutral_color }};
+}
+#ParamListWidget QAbstractSpinBox::up-button:pressed {
+    background: {{ theme.widget_accent_neutral_color }};
+}
+#ParamListWidget QAbstractSpinBox::up-arrow {
+    image: url(:/std/icons/spin-up/normal);
+    width: 10px;
+    height: 10px;
+}
+#ParamListWidget QAbstractSpinBox::up-arrow:disabled, QAbstractSpinBox::up-arrow:off {
+    image: url(:/std/icons/spin-up/disabled);
+}
+#ParamListWidget QAbstractSpinBox::down-button {
+    width: 16px;
+    background: {{ theme.widget_accent_neutral_color }};
+    border-left: 1px solid {{ theme.widget_border_color }};
+    border-bottom-right-radius: {{ theme.widget_corner_radius }};
+}
+#ParamListWidget QAbstractSpinBox::down-button:hover {
+    background: {{ theme.widget_accent_neutral_color }};
+}
+#ParamListWidget QAbstractSpinBox::down-button:pressed {
+    background: {{ theme.widget_accent_neutral_color }};
+}
+#ParamListWidget QAbstractSpinBox::down-arrow {
+    image: url(:/std/icons/spin-down/normal);
+    width: 10px;
+    height: 10px;
+}
+#ParamListWidget QAbstractSpinBox::down-arrow:disabled, QAbstractSpinBox::down-arrow:off {
+    image: url(:/std/icons/spin-down/disabled);
+}

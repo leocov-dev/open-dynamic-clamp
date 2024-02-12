@@ -1,14 +1,18 @@
-name: PlatformIO CI
+name: Continuous Integration
 
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
-  test:
+  # ---------------------------------------------------------------------------
+  firmware-test:
+    name: Firmware Unit Tests
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./firmware
     steps:
       - uses: actions/checkout@v3
 
@@ -29,9 +33,13 @@ jobs:
       - name: Test PlatformIO Project
         run: make test
 
-  build:
+  # ---------------------------------------------------------------------------
+  firmware-build:
+    name: Firmware Build Smoke Test
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./firmware
     steps:
       - uses: actions/checkout@v3
 
@@ -51,3 +59,75 @@ jobs:
 
       - name: Build PlatformIO Project
         run: make build
+
+  # ---------------------------------------------------------------------------
+  software-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./software
+    name: Controller Software Unit Tests
+    steps:
+      - name: Dependencies
+        run: >-
+          sudo apt-get update && 
+          sudo apt-get install -y 
+          libxcb-xinerama0 
+          libxkbcommon-x11-0 
+          libgl1-mesa-glx 
+          libegl1 
+          libopengl0
+          libxcb-icccm4 
+          libxcb-image0 
+          libxcb-keysyms1 
+          libxcb-randr0 
+          libxcb-render-util0 
+          libxcb-xinerama0 
+          libxcb-xfixes0 
+          x11-utils
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: >-
+          pip install 
+          -r requirements.txt
+          -r requirements-dev.txt
+
+      - name: Run PyTest
+        run: invoke test
+
+  # ---------------------------------------------------------------------------
+  software-build:
+    #    strategy:
+    #      matrix:
+    #        os: [ubuntu-latest, macos-latest]
+
+    runs-on: macos-latest #${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: ./software
+    name: Controller Software Build Smoke Test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: >-
+          pip install 
+          -r requirements.txt 
+          -r requirements-dev.txt
+
+      - name: Build and Package
+        run: invoke release

@@ -1,0 +1,4 @@
+pyside6~=6.5.0
+pyside-app-core~=0.1.7
+pyqtgraph~=0.13.2
+cobs~=1.2.0

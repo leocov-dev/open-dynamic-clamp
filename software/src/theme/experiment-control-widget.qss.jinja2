@@ -1,0 +1,27 @@
+#ExperimentControlWidget > QWidget{
+    border-top: {{ theme.win_divider_width }} solid {{ theme.win_divider_color }};
+    border-radius: 0;
+}
+#ExperimentControlWidget QPushButton {
+    font-size: 14px;
+    font-weight: 700;
+}
+#ExperimentControlWidget_START {
+    background: {{ theme.experiment_start.darker() }};
+}
+#ExperimentControlWidget_START::hover {
+    background: {{ theme.experiment_start.lighter(100) }};
+}
+#ExperimentControlWidget_START::disabled {
+    color: {{ theme.text_color }};
+    background: {{ theme.widget_accent_main_color.darker() }};
+}
+#ExperimentControlWidget_STOP {
+    background: {{ theme.experiment_stop }};
+}
+#ExperimentControlWidget_STOP::disabled {
+    background: {{ theme.experiment_stop.darker(175) }};
+}
+#ExperimentControlWidget_STOP::hover {
+    background: {{ theme.experiment_stop.lighter(120) }};
+}
