@@ -1,5 +1,8 @@
 # Open Dynamic Clamp Firmware
 
+**This project is a work-in-progress and is not currently functional on the `main` branch.**
+
+---
 Firmware code and Hardware schematics
 
 ## References
